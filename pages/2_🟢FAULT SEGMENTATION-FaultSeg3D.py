@@ -9,8 +9,8 @@ from custom_blocks import sidebar, crop_and_load_volume, save_data_form
 from visualization_helpers import VISUALIZATION
 from data_classes import Numpy3D
 from utils import find_files_in_directory, predict_with_mask, std_mean_normalization
-
-from keras.models import load_model
+from tensorflow.keras.models import load_model
+#from keras.models import load_model
 from appdata.geophysics.faults.faultSeg.unet3 import *
 from appdata.geophysics.faults.faultSeg.unet3 import cross_entropy_balanced
 

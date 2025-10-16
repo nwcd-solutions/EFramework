@@ -24,6 +24,8 @@ Introducing EFramework, an open-source development tool designed to democratize 
 2. Lauch a terminal in the EFramework folder
 3. Create a new conda enviroment `conda env create -f environment.yml`
 4. Activate the enviroment `conda activate EFramework`
+`conda install -c conda-forge opencv`
+`pip install tensorflow `
 5. Run the app `streamlit run Hello.py`
 
 ## Integrated Modules
