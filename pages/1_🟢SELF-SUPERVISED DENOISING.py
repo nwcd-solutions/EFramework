@@ -37,7 +37,7 @@ from visualization_helpers import VISUALIZATION
 from appdata.geophysics.post_processing.Transform2022_SelfSupervisedDenoising.unet import UNet
 from appdata.geophysics.post_processing.Transform2022_SelfSupervisedDenoising.tutorial_utils import regular_patching_2D, add_whitegaussian_noise, add_bandlimited_noise, weights_init, set_seed, make_data_loader,plot_corruption, plot_training_metrics, plot_synth_results, plot_field_results, multi_active_pixels, n2v_train, n2v_evaluate
 
-@st.experimental_memo
+@st.cache_data
 def apply_noise(data, option, noises_seq):
     noisydata = np.empty(0)
     if (option == noises_seq[0]):
@@ -50,7 +50,7 @@ def apply_noise(data, option, noises_seq):
         st.error("SOMETHING WRONG!")
     return noisydata
 
-@st.experimental_memo
+@st.cache_data
 def prepare_pathes(data, patch_x, patch_y):
     noisy_patches = regular_patching_2D(data, 
                                         patchsize=[patch_x, patch_y], # dimensions of extracted patch
@@ -62,7 +62,7 @@ def prepare_pathes(data, patch_x, patch_y):
     noisy_patches = noisy_patches[shuffler] 
     return noisy_patches
 
-@st.experimental_memo
+@st.cache_data
 def construct_blindspot(data, perc_active, neighbourhood_radius):
     # Compute the total number of pixels within a patch
     total_num_pixels = data[0].shape[0]*data[0].shape[1]
@@ -77,7 +77,7 @@ def construct_blindspot(data, perc_active, neighbourhood_radius):
                                         )
     return crpt_patch, mask, num_activepixels
 
-@st.experimental_memo(suppress_st_warning=True)
+@st.cache_data
 def apply_model(data, _network): 
     device = 'cpu'
     if torch.cuda.device_count() > 0 and torch.cuda.is_available():

@@ -392,7 +392,7 @@ def plot_top(seis, cmap, vmin, vmax):
     seis_plot = px.imshow(seis, zmin=vmin, zmax=vmax, aspect='auto', labels=dict(x="Xline_idx", y="Iline_idx", color="Amplitude"), color_continuous_scale=cmap)
     return seis_plot
 
-st.experimental_memo
+@st.cache_data
 def save_figure_in_temp(fig1):
     fig1_path = tempfile.NamedTemporaryFile()
     fig1.write_image(fig1_path.name+".jpg")
