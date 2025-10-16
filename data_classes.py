@@ -121,7 +121,8 @@ class SegyIO3D(SeismicData):
         self.xline_byte = xline_byte
 
     def __del__(self):
-        self._segyfile.close()
+        if hasattr(self, '_segyfile'):
+            self._segyfile.close()
 
     def get_iline(self, indx):
         return self._segyfile.iline[self._segyfile.ilines[indx]]
